@@ -5,6 +5,7 @@ import RadarChart from "../components/radarChart";
 import Page from "../components/Page";
 import {Link} from 'react-router-dom';
 import {getTwoCountries} from "../redux/selectors";
+import ColumnChart from "../components/ColumnChart";
 
 class App extends Component {
   constructor (props) {
@@ -25,18 +26,32 @@ class App extends Component {
 
   render () {
     const {twoCountries} = this.props;
-    let radarChart;
+    let radarChart, columnChart1, columnChart2;
     if (twoCountries[0] && twoCountries[1]) {
       radarChart = <RadarChart
         variables={twoCountries[2]}
         sets={twoCountries.slice(0, 2)}
         width={this.state.barChart.width}
         height={this.state.barChart.height}
+      />;
+      columnChart1 = <ColumnChart
+        data={twoCountries[1]}
+      />
+      columnChart2 = <ColumnChart
+        data={twoCountries[0]}
       />
     }
     return (
       <Page>
-        {radarChart}
+        <div className="row">
+          <div className="col-6">
+            {radarChart}
+          </div>
+          <div className="col-6">
+            {columnChart1}
+            {columnChart2}
+          </div>
+        </div>
         <Link
           to={{
             pathname: '/',

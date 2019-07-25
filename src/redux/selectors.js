@@ -14,7 +14,7 @@ export const getTwoCountries = createSelector(
         label: standard.countryName,
         values: {}
       };
-      standard.data.forEach(d => newStandard.values[d.key] = Number(d.data));
+      standard.data.forEach(d => newStandard.values[d.key] = Math.log10(Number(d.data)+1));
     }
     if (current.data) {
       newCurrent = {
@@ -22,7 +22,7 @@ export const getTwoCountries = createSelector(
         label: current.countryName,
         values: {}
       };
-      current.data.forEach(d => newCurrent.values[d.key] = Number(d.data));
+      current.data.forEach(d => newCurrent.values[d.key] = Math.log10(Number(d.data)+1));
     }
 
     return [newStandard, newCurrent, standard.data]
