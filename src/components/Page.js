@@ -15,7 +15,6 @@ function Page ({
     page: true,
     'page--prev': state && state.prev,
   })
-  console.log({color, background});
   return (
     <section
       className={cx}

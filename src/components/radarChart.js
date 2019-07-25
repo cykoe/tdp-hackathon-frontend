@@ -1,9 +1,6 @@
 import React from 'react';
-import * as d3 from 'd3';
+// import * as d3 from 'd3';
 import Radar from 'react-d3-radar';
-
-const cor = '';
-const url = 'https://u26y0c7lh4.execute-api.us-east-2.amazonaws.com/dev/nutrition/';
 
 class RadarChart extends React.Component {
 
@@ -50,61 +47,9 @@ class RadarChart extends React.Component {
 
   render () {
     let data = {
-      variables: [
-        {key: 'calcium', label: 'Calcium'},
-        {key: 'fruit', label: 'Fruit'},
-        {key: 'legumes', label: 'Legumes'},
-        {key: 'milk', label: 'Milk'},
-        {key: 'nuts_and_seed', label: 'Nuts and seed'},
-        {key: 'omega_3', label: 'Omega 3'},
-        {key: 'processed_meat', label: 'Processed meat'},
-        {key: 'red_meat', label: 'Red meat'},
-        {key: 'salt', label: 'Salt'},
-        {key: 'sugar_sweetened_beverages', label: 'Sugar Sweetened Beverages'},
-        {key: 'vegetables', label: 'Vegetables'},
-        {key: 'whole_grain', label: 'Whole grain'},
-      ],
-      sets: [
-        {
-          key: 'me',
-          label: 'My Scores',
-          values: {
-            calcium: 4,
-            fruit: 6,
-            legumes: 7,
-            milk: 2,
-            nuts_and_seed: 8,
-            omega_3: 1,
-            processed_meat: 1,
-            red_meat: 1,
-            salt: 1,
-            sugar_sweetened_beverages: 1,
-            vegetables: 1,
-            whole_grain: 1,
-          },
-        },
-        {
-          key: 'everyone',
-          label: 'Everyone',
-          values: {
-            calcium: 10,
-            fruit: 8,
-            legumes: 6,
-            milk: 4,
-            nuts_and_seed: 2,
-            omega_3: 4,
-            processed_meat: 10,
-            red_meat: 4,
-            salt: 4,
-            sugar_sweetened_beverages: 4,
-            vegetables: 8,
-            whole_grain: 10,
-          },
-        },
-      ],
+      variables: this.props.variables,
+      sets: this.props.sets,
     };
-    if (!!this.props.data.sets.length)
-      data = this.props.data;
     console.log(data);
     return (
       <div>

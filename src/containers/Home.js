@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import logo from '../images/logo.png';
 import banner from '../images/banner_img.png';
 import SearchBox from "../components/SearchBox";
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {fetchCountryData} from '../actions/actions';
+import {fetchCountryData} from '../redux/actions/actions';
 import '../styles/App.css';
 import Page from "../components/Page";
 
@@ -16,13 +15,11 @@ class Home extends Component {
   }
 
   handleSubmit (countryName) {
-    const {dispatch} = this.props;
-    dispatch(fetchCountryData(countryName));
+    this.props.dispatch(fetchCountryData(countryName));
     this.props.history.push({pathname:'/about',state: { prev: true }})
   }
 
   render () {
-    const {countryDataReducer} = this.props;
     return (
       <Page>
         <div>
@@ -37,7 +34,6 @@ class Home extends Component {
                     <div className="banner_text_iner">
                       <h1 className="banner_text_search"> Who are you feeding today? </h1>
                       <SearchBox onSubmit={this.handleSubmit}/>
-                        {countryDataReducer.isFetching && <h2>Loading...</h2>}
                     </div>
                   </div>
                 </div>
@@ -55,14 +51,11 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
 
 function mapStateToProps (state) {
-  const {countryDataReducer} = state;
+  const {countryData} = state;
   return {
-    countryDataReducer,
+    countryData,
   };
 }
 
