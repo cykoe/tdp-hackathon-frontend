@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import RadarChart from "../components/radarChart";
 import Page from "../components/Page";
 import {Link} from 'react-router-dom';
+import {getTwoCountries} from "../redux/selectors";
 
 class App extends Component {
   constructor (props) {
@@ -24,42 +24,19 @@ class App extends Component {
   }
 
   render () {
-    const {countryDataReducer} = this.props;
-    const msg = countryDataReducer.countryData.message;
-    if (msg && msg[(Object.keys(msg))[0]].toLowerCase() === 'standard' && !this.state.data.sets.some(set => set.key === 'standard')) {
-      this.state.data.sets.push({
-        key: 'standard',
-        label: 'Standard',
-        values: {},
-      });
-      Object.keys(msg).forEach((key, i) => {
-        if (i !== 0) {
-          this.state.data.variables.push({
-            key,
-            label: key
-          });
-          this.state.data.sets[0].values[key] = Number(msg[key]);
-        }
-      })
-    } else if (msg && !this.state.data.sets.some(set => set.key === msg[(Object.keys(msg))[0]].toLowerCase())) {
-      this.state.data.sets.push({
-        key: msg[(Object.keys(msg))[0]].toLowerCase(),
-        label: msg[(Object.keys(msg))[0]],
-        values: {},
-      });
-      Object.keys(msg).forEach((key, i) => {
-        if (i !== 0) {
-          this.state.data.sets[1].values[key] = Number(msg[key]);
-        }
-      })
+    const {twoCountries} = this.props;
+    let radarChart;
+    if (twoCountries[0] && twoCountries[1]) {
+      radarChart = <RadarChart
+        variables={twoCountries[2]}
+        sets={twoCountries.slice(0, 2)}
+        width={this.state.barChart.width}
+        height={this.state.barChart.height}
+      />
     }
     return (
       <Page>
-        <RadarChart
-          data={this.state.data}
-          width={this.state.barChart.width}
-          height={this.state.barChart.height}
-        />
+        {radarChart}
         <Link
           to={{
             pathname: '/',
@@ -87,14 +64,9 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
-
 function mapStateToProps (state) {
-  const {countryDataReducer} = state;
   return {
-    countryDataReducer,
+    twoCountries: getTwoCountries(state),
   };
 }
 

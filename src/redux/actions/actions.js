@@ -3,7 +3,7 @@ import {
   RECEIVE_COUNTRYDATA,
   RECEIVE_COUNTRYDATA_ERROR,
   COUNTRYDATA_URL
-} from "../constants/ActionTypes";
+} from "../../constants/ActionTypes";
 
 function requestCountryData () {
   return {
@@ -34,7 +34,7 @@ export function fetchCountryData (countryName) {
         if (!json.success) {
           throw new Error(json.message);
         }
-        dispatch(receiveCountryData(json));
+        dispatch(receiveCountryData(json.message));
       })
       .catch(err => dispatch(receiveCountryDataError(err)));
   }
