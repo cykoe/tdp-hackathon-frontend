@@ -36,44 +36,51 @@ class App extends Component {
       />;
       columnChart1 = <ColumnChart
         data={twoCountries[1]}
-      />
+      />;
       columnChart2 = <ColumnChart
         data={twoCountries[0]}
       />
     }
     return (
       <Page>
-        <div className="row">
-          <div className="col-6">
-            {radarChart}
+        <div className="bg_pic">
+          <div className="row">
+            <div className="col-6">
+              <div className="desc">
+                <h1>Nutrition Portfolio for Ghana </h1>
+                <h5>Here you'll find all the information you need to understand current nutrient deficiencies within
+                  Ghana. Hover over any point on the bar charts to see details.</h5>
+              </div>
+              {radarChart}
+            </div>
+            <div className="col-6">
+              {columnChart1}
+              {columnChart2}
+            </div>
           </div>
-          <div className="col-6">
-            {columnChart1}
-            {columnChart2}
-          </div>
+          <Link
+            to={{
+              pathname: '/',
+              state: {prev: false},
+            }}
+            className="nav__link"
+          >
+            <button className="button banner_btn_1" type='submit'>
+              Back
+            </button>
+          </Link>
+          <Link
+            to={{
+              pathname: '/recommendation',
+              state: {prev: false},
+            }}
+            className="nav__link"
+          >
+            <button className="button banner_btn_1" type='submit'>
+              Next
+            </button>
+          </Link>
         </div>
-        <Link
-          to={{
-            pathname: '/',
-            state: {prev: false},
-          }}
-          className="nav__link"
-        >
-          <button className="button banner_btn_1" type='submit'>
-            Back
-          </button>
-        </Link>
-        <Link
-          to={{
-            pathname: '/recommendation',
-            state: {prev: false},
-          }}
-          className="nav__link"
-        >
-          <button className="button banner_btn_1" type='submit'>
-            Next
-          </button>
-        </Link>
       </Page>
     );
   }
