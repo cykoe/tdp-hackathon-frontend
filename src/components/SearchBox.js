@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import {Typeahead} from 'react-bootstrap-typeahead';
 
-class SearchBox extends Component {
+export default class SearchBox extends Component {
   constructor (props) {
     super(props);
     this.state = {value: ''};
@@ -14,25 +15,38 @@ class SearchBox extends Component {
 
   render () {
     return (
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        if (this.state.value !== '') {
-          this.props.onSubmit(this.state.value);
-        }
-      }}>
-        <input
-          type='text'
-          value={this.state.value}
-          placeholder='Enter Country Name'
-          className='input'
-          onChange={this.handleChange}
+      <div>
+        <Typeahead
+          id='id'
+          onChange={(selected) => {
+            this.setState({value: selected[0]});
+            this.props.onSubmit(selected[0])
+          }}
+          options={['congo', 'sudan', 'ghana', 'zimbabwe', 'angola', 'kenya', 'madagascar', 'ethiopia']}
+          selected={this.state.selected}
+          placeholder='Enter a country name...'
         />
-        <button className="button banner_btn_1" type='submit'>
-          Run
-        </button>
-      </form>
+        {/*<button className="button banner_btn_1" onClick={()=>this.props.onSubmit(this.state.value)}>*/}
+        {/*  Run*/}
+        {/*</button>*/}
+        {/*<form onSubmit={(e) => {*/}
+        {/*  e.preventDefault();*/}
+        {/*  if (this.state.value !== '') {*/}
+        {/*    this.props.onSubmit(this.state.value);*/}
+        {/*  }*/}
+        {/*}}>*/}
+        {/*  <input*/}
+        {/*    type='text'*/}
+        {/*    value={this.state.value}*/}
+        {/*    placeholder='Enter Country Name'*/}
+        {/*    className='input'*/}
+        {/*    onChange={this.handleChange}*/}
+        {/*  />*/}
+        {/*  <button className="button banner_btn_1" type='submit'>*/}
+        {/*    Run*/}
+        {/*  </button>*/}
+        {/*</form>*/}
+      </div>
     )
   }
 }
-
-export default SearchBox
