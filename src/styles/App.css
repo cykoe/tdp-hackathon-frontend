@@ -6,6 +6,28 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:800|Poppins:300,400,500,600,700,800|Roboto:300,400,500");
 
 
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+[class*="fa"]:before {
+    font-family: "FontAwesome", Times, serif;
+}
+
+html {
+    font-family: Helvetica Neue;
+    font-size: 14px;
+}
+
+#app {
+    /*width: 500px;*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+
 body {
     font-family: "Arvo", sans-serif;
     padding: 0;
@@ -21,6 +43,20 @@ body {
 
 .banner_text .button, .banner_text .input {
     margin-left: 20px;
+}
+
+.bg_pic {
+    /* something */
+    background-image: url("../images/app_background.png");
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.desc {
+    /* something */
+    font-family: "Arvo", sans-serif;
 }
 
 .header {
