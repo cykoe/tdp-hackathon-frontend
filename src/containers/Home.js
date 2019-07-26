@@ -4,6 +4,7 @@ import banner from '../images/banner_img.png';
 import SearchBox from "../components/SearchBox";
 import {connect} from 'react-redux';
 import {fetchCountryData} from '../redux/actions/actions';
+import {fetchCountryList} from '../redux/actions/actions';
 import '../styles/App.css';
 import Page from "../components/Page";
 
@@ -12,14 +13,20 @@ class Home extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.props.dispatch(fetchCountryData('standard'));
+    this.props.dispatch(fetchCountryList());
   }
 
   handleSubmit (countryName) {
     this.props.dispatch(fetchCountryData(countryName));
-    this.props.history.push({pathname:'/about',state: { prev: true }})
+    this.props.history.push({pathname: '/about', state: {prev: true}})
   }
 
   render () {
+    const {countryList} = this.props;
+    let list = [];
+    if (countryList.list && countryList.list.length) {
+      list = countryList.list;
+    }
     return (
       <Page>
         <div>
@@ -33,7 +40,10 @@ class Home extends Component {
                   <div className="banner_text">
                     <div className="banner_text_iner">
                       <h1 className="banner_text_search"> Who are you feeding today? </h1>
-                      <SearchBox onSubmit={this.handleSubmit}/>
+                      <SearchBox
+                        onSubmit={this.handleSubmit}
+                        list={list}
+                      />
                     </div>
                   </div>
                 </div>
@@ -53,9 +63,10 @@ class Home extends Component {
 
 
 function mapStateToProps (state) {
-  const {countryData} = state;
+  const {countryData, countryList} = state;
   return {
     countryData,
+    countryList
   };
 }
 

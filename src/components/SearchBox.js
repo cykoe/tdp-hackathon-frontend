@@ -22,7 +22,7 @@ export default class SearchBox extends Component {
             this.setState({value: selected[0]});
             this.props.onSubmit(selected[0])
           }}
-          options={['congo', 'sudan', 'ghana', 'zimbabwe', 'angola', 'kenya', 'madagascar', 'ethiopia']}
+          options={this.props.list}
           selected={this.state.selected}
           placeholder='Enter a country name...'
         />
