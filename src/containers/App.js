@@ -43,8 +43,13 @@ class App extends Component {
     }
     return (
       <Page>
+        <div className="bg_pic">
         <div className="row">
           <div className="col-6">
+            <div className="desc">
+              <h1>Nutrition Portfolio for Ghana </h1>
+              <h5>Here you'll find all the information you need to understand current nutrient deficiencies within Ghana. Hover over any point on the bar charts to see details.</h5>
+            </div>
             {radarChart}
           </div>
           <div className="col-6">
@@ -74,6 +79,7 @@ class App extends Component {
             Next
           </button>
         </Link>
+        </div>
       </Page>
     );
   }

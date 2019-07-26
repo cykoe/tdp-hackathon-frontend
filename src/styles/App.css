@@ -23,6 +23,22 @@ body {
     margin-left: 20px;
 }
 
+.bg_pic {
+    /* something */
+    background-image: url("../images/app_background.png");
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.desc {
+    /* something */
+    font-family: "Arvo", sans-serif;
+}
+
+
+
 .header {
     width: 100%;
     min-height: 80px;
