@@ -16,7 +16,7 @@ class ColumnChart extends React.Component {
 
     const options = {
       title: {
-        "font-family": "Roboto",
+        font-family: "Roboto",
         text: this.props.data.label
       },
       animationEnabled: true,
