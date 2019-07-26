@@ -17,7 +17,7 @@ html {
     font-size: 14px;
 }
 
-#app {
+.app {
     /*width: 500px;*/
     position: relative;
     display: flex;
