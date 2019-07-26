@@ -4,9 +4,9 @@ import '../styles/App.css';
 import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 
 class Recommendation extends React.Component {
-  constructor (props) {
-    super(props);
-  }
+  // constructor (props) {
+  //   super(props);
+  // }
 
   render () {
     return (<Page>
